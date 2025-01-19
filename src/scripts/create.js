@@ -1,3 +1,4 @@
+const { error } = require('console');
 const fs= require('fs');
 const exec= require('child_process').exec;
 const component= process.argv[2];
@@ -16,6 +17,16 @@ fs.readFile( "./src/components/template.html", "utf8", (err, source) => {
                 fs.appendFile(`./src/assets/sass/components/_components.scss`, `@import "${component}";\n`, (err) => {
                     if ( err )  return console.error(`there is a problem in appending ${component}.sass`);
                     console.log(`${component} appended successfully!`);
+                    fs.appendFile(`./src/assets/sass/components/_components.scss`, `@import "${component}";\n` , (err) => {
+                       if ( err ) return console.error(`there is a problem in appending ${component}.sass`);
+                       console.log(`${component} appended successfully!`);
+                       exec(`code -r ./src/components/${component}.html`, (err) => {
+                        if (err) return console.error(err)
+                       });
+                       exec(`code -r ./src/assets/sass/components/${component}.scss`, (err) => {
+                        if (err) return console.error(err)
+                       });
+                    });
                     exec(`code -r ./src/components/${component}.html`, (err) => {
                         if (err) return console.error(err)
                     });

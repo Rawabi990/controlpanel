@@ -6,4 +6,5 @@ console.log("hello from webpack");
 var student = require("./studentname");
 var student1 = new student("Noor", "Hilles");
  
-sentTimeout( () => alert("hello student!"), 4000);
+setTimeout( () => alert("hello student!"), 4000);
+
