@@ -13,4 +13,6 @@
 @import "components/demo";
 @import "components/components";
 
-$background-color: silver;
+@import "pages/index";
+@import "pages/single-page";
+@import "hacks/add-product";
